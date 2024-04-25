@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Pay Payment</title>
+</head>
+<body>
+
+<h1>Click the button below to open Google Pay and complete the payment</h1>
+
+<button id="googlePayButton">Pay Now</button>
+
+<script>
+document.getElementById("googlePayButton").addEventListener("click", function() {
+    // Retrieve user details from URL parameters
+    var userDetails = new URLSearchParams(window.location.search);
+    var userId = userDetails.get('userId'); // Assuming userId is passed as a parameter
+
+    // Parameters for payment
+    var recipientUPI = "yourmerchant@upi"; // Replace with your recipient's UPI ID
+    var amount = "10.00"; // Replace with the transaction amount
+    var transactionRef = "123456789"; // Replace with a unique transaction reference
+
+    // Construct Google Pay link with parameters
+    var googlePayLink = "upi://pay?pa=" + recipientUPI + "&pn=Yessma&tn=Payment&am=" + amount + "&tr=" + transactionRef + "&cu=INR&userId=" + userId;
+
+    // Open Google Pay app
+    window.location.href = googlePayLink;
+});
+</script>
+
+</body>
+</html>
